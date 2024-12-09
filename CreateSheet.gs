@@ -63,4 +63,3 @@ function populateData(sheet) {
   sheet.getRange("J4").setValue(shipping).setNumberFormat("$#,##0.00");
   sheet.getRange("J5").setValue("=SUM(D:D, J4)").setNumberFormat("$#,##0.00"); // grand total
 }
-

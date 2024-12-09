@@ -1,4 +1,3 @@
-//TODO expose discord id's to ping as top variables
 
 
 // reads answers from Google Form and edits global variables accordingly
@@ -35,11 +34,22 @@ function parseForm(e) {
         }
     }
 
-    // check if spreadsheet
-    if(question.includes("Yes (go to spreadsheet upload 👍)")) {
+    // debug
+    if(question.includes("File Upload")) {
       hasSpreadsheet = true;
+      inputSheetID = answer; // returns sheet id in an array of 1 element for whatever reason
+      inputSheetID = inputSheetID[0];
+      inputSheetID = inputSheetID.replace(/[\[\]]/g, ""); // sanitize brackets
       return; // break because we dont care about the form values anymore
     }
+
+    // // check if spreadsheet
+    // if(question.includes("Upload Spreadsheet?")) {
+    //   if(answer === "Yes") {
+    //     hasSpreadsheet = true;
+    //   }
+    // }
+
 
     // parse item name
     if(question.includes("Name")) {
@@ -94,27 +104,27 @@ function parseForm(e) {
 
     if (question === "Committee") {
       thumbNailUrl = "https://i.imgur.com/jvF3FoH.jpg";  // default
-      commiteeName = "General";
+      committeeName = "General";
       switch(answer) {
         case "VEXU":
           thumbNailUrl = "https://i.imgur.com/2vwgZHO.jpg";
-          commiteeName = "VEXU";
+          committeeName = "VEXU";
           break;
         case "RoboMaster":
           thumbNailUrl = "https://i.imgur.com/4UEoyMs.jpg";
-          commiteeName = "RoboMaster";
+          committeeName = "RoboMaster";
           break;
         case "Demobots":
           thumbNailUrl = "https://i.imgur.com/nrR07HS.jpg";
-          commiteeName = "Demobots";
+          committeeName = "Demobots";
           break;
         case "IGVC":
           thumbNailUrl = "https://i.imgur.com/M5TQiDf.jpg";
-          commiteeName = "IGVC";
+          committeeName = "IGVC";
           break;
         case "Robotathon":
           thumbNailUrl = "https://i.imgur.com/XHbsPvd.jpg";
-          commiteeName = "Robotathon";
+          committeeName = "Robotathon";
           break;
       }
     }

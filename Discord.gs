@@ -23,7 +23,7 @@ function preparePayload() {
 
   // fields that constitute majority of rich discord embed
   items = [
-      { "name": "Committee", "value": commiteeName, "inline": false },
+      { "name": "Committee", "value": committeeName, "inline": false },
       { "name": "Contact", "value": email + "\n" + phoneNumber, "inline": false },
       { "name": "Vendor", "value": vendorName, "inline": false },
       { "name": "Shipping", "value": `$${parseFloat(shipping).toFixed(2)}`, "inline": false},
