@@ -33,7 +33,6 @@ function mainOnSubmit(e) {
     return;
   }
   
-  // TODO
   if(hasSpreadsheet) {
     try {
       readSheet();

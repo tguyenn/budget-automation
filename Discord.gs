@@ -5,13 +5,16 @@ const DISCORD_POST_URL = "https://discord.com/api/webhooks/1299608285531471902/O
 
 const randomColor = Math.floor(Math.random() * 0xFFFFFF);
 let items = []; // not actual purchased items, this is filled with fields that get published in discord embed
-let options;
+let options; // text customizations for embed
 
 
-// self-explanatory
+
+// 
 function postEmbed() {
   preparePayload();
-  UrlFetchApp.fetch(DISCORD_POST_URL, options);
+  response = UrlFetchApp.fetch(DISCORD_POST_URL, options);
+  // Logger.log("Response Code: " + response.getResponseCode());
+  // Logger.log("Response Body: " + response.getContentText());
 }
 
 function preparePayload() {
@@ -37,6 +40,7 @@ function preparePayload() {
     ];
 
   options = {
+          // "muteHttpExceptions": true,
           "method": "post",
           "headers": {
           "Content-Type": "application/json",
@@ -63,7 +67,7 @@ function preparePayload() {
 // posts error message to discord
 function postKill(process) { 
   discordTag = "<@339824792092016640>"; // ping tguyen
-  items = [];
+  items = []; // wipe
   const options = {
           "method": "post",
           "headers": {
@@ -85,5 +89,7 @@ function postKill(process) {
   };
 
     UrlFetchApp.fetch(DISCORD_POST_URL, options);
+
+
     return;
 }

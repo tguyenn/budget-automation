@@ -3,13 +3,13 @@
 
 function readSheet() {
 
-  Logger.log(committeeName);
-Logger.log(vendorName);
-Logger.log(email);
-Logger.log(phoneNumber);
-Logger.log(shippingType);
-Logger.log(shipping);
-Logger.log(specialNotes);
+// Logger.log(committeeName);
+// Logger.log(vendorName);
+// Logger.log(email);
+// Logger.log(phoneNumber);
+// Logger.log(shippingType);
+// Logger.log(shipping);
+// Logger.log(specialNotes);
 
   const spreadsheet = SpreadsheetApp.openById(inputSheetID);
   const sheet = spreadsheet.getSheetByName("Sheet1"); 
@@ -18,8 +18,7 @@ Logger.log(specialNotes);
   let lastRow = sheet.getRange("A1:A").getValues();
   lastRow = lastRow.filter(String).length;
 
-  // const data = sheet.getRange(1, 1, lastRow).getValues();
-  // lastRow = data.findIndex(lastRow => lastRow[0] === '') + 1
+  Logger.log("input sheet lastRow: " + lastRow);
 
   // go from X2:XlastRow and store data into respective variables
 
