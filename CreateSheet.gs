@@ -1,4 +1,6 @@
-// create new sheet and populate with data
+/**
+ *  create new sheet and populate with data
+ */
 
 // publicly exposed function that creates URL for newly generated sheet
 function getSheet() {
@@ -50,14 +52,16 @@ function createTemplate(sheet) {
   range = sheet.getRange(3, 9, summaryData.length, 1);
   range.setValues(summaryData);  
 }
-
 // fill template with data
+
+
 function populateData(sheet) {
+  sheet.getRange("G:G").setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
   for(let i = 0; i < itemsOrdered; i++) {
     const totalItemPrice = "=PRODUCT(B" + (i+2) + "," + " C" + (i+2) + ")";
     const newData = [nameArr[i], quantityArr[i], priceArr[i], totalItemPrice]
-    sheet.getRange(i+2, 1, 1, newData.length).setValues([newData]);
-    sheet.getRange(i + 2, 7, 1, 1).setValue(linksArr[i]); 
+    sheet.getRange(i + 2, 1, 1, newData.length).setValues([newData]); // set all data except link
+    sheet.getRange(i + 2, 7, 1, 1).setValue(linksArr[i]);  // set link
   }
   sheet.getRange("J3").setValue(shippingType).setHorizontalAlignment("right");
   sheet.getRange("J4").setValue(shipping).setNumberFormat("$#,##0.00");

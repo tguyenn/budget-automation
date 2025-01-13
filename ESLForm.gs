@@ -1,4 +1,7 @@
-// edit and return esl link as string based on global variables
+/**
+ * edit and return esl link as string based on global variables
+ */
+
 
 let amazonBuyerName = "Annie Vu"; // for Amazon ESL form
 
@@ -12,9 +15,18 @@ function replaceForm() {
 
   let today = new Date();
   today.setDate(today.getDate() + 7); // 7 days out from today
-  formattedDate = today.getFullYear() + '-' + 
+  formattedDate = today.getFullYear() + '-' + // YYYY-MM-DD (acceptable format for URL)
                       (today.getMonth() + 1).toString().padStart(2, '0') + '-' +
                       today.getDate().toString().padStart(2, '0');
+
+                      
+  let prompt = "return me a short summary where each of the following items is summarized in three words. separate each item with a comma. do not describe the item. only list the names. skip the item if a similar item already exists: "
+  for(i = 0; i < itemsOrdered; i++) {
+    prompt += nameArr[i] + " ";
+  }
+  let descRes = testGemini(prompt);
+
+  let reasonRes = "Materials for " + committeeName + " committee project";
 
   if(isAmazon) {
     amazonESLLink = amazonESLLink.replace("amazonBuyerName", amazonBuyerName);
@@ -29,11 +41,16 @@ function replaceForm() {
   eslLinkRes = eslLinkRes.replace("email", email);
   eslLinkRes = eslLinkRes.replace("date", formattedDate);
   eslLinkRes = eslLinkRes.replace("phoneNumber", phoneNumber);
-  eslLinkRes = eslLinkRes.replace("description", ""); // fill this in manually in form
-  eslLinkRes = eslLinkRes.replace("reasonforrequest", ""); // fill this in manually in form
+
+
+  eslLinkRes = eslLinkRes.replace("description", descRes); // fill this in manually in form
+  eslLinkRes = eslLinkRes.replace("reasonforrequest", reasonRes); // fill this in manually in form
   eslLinkRes = eslLinkRes.replace(/ /g, "%20"); // replace ALL spaces with %20   
+  eslLinkRes = eslLinkRes.replace(/,/g, "%2C"); // replace ALL commas with %2C
+  eslLinkRes = eslLinkRes.replace(/[\*\(\)\r\n]+/g, ''); 
+
+
   return eslLinkRes;
 }
-
 
 

@@ -1,4 +1,6 @@
-// edit master budget sheet
+/** 
+ * edit master budget sheet
+ * */ 
 
 function editMasterSheet() {
   let sheetID = "1uw0LqBbjbEuq2X-QjBsj0W6ebI_K2bclHLlOi9tjy1Q";
@@ -7,13 +9,7 @@ function editMasterSheet() {
   Logger.log(committeeName);
   const sheet = spreadsheet.getSheetByName(committeeName); 
 
-  const lastRow = sheet.getLastRow();  
-  if (lastRow === 0) {
-    targetRow = 1; // start from the first targetRow if the sheet is empty
-  } else {
-    let data = sheet.getRange(1, 1, lastRow).getValues();
-    targetRow = data.findIndex(targetRow => targetRow[0] === '') + 1 || lastRow + 1; // first empty row or lastRow
-  }
+  targetRow = sheet.getLastRow() + 1;
 
   const today = new Date();
   const formattedDate = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
