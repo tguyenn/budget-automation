@@ -5,7 +5,8 @@
 
 function readSheet() {
 
-  const spreadsheet = SpreadsheetApp.openById("10RwNdGDrd2vkH5v3Wp1miU9Ei_wpLrtD6UOWaGKFxQU"); // https://docs.google.com/spreadsheets/d/10RwNdGDrd2vkH5v3Wp1miU9Ei_wpLrtD6UOWaGKFxQU/edit?gid=0#gid=0
+  const spreadsheet = SpreadsheetApp.openById(inputSheetID); // open arbitrary template sheet 
+
   const sheet = spreadsheet.getSheetByName("Sheet1"); 
 
 
@@ -86,7 +87,7 @@ function readSheet() {
       specialErrorMessage = "someone forgot to put the committee lol"
   }
 
-  if(vendorName == "Amazon" || vendorName == "amazon") {
+  if(vendorName == "Amazon" || vendorName == "amazon" || vendorName == "AMZN" || vendorName == "AMAZON") {
     discordTag = "<@365619835939455005>"; // ping annie 
     isAmazon = true;
   }
@@ -94,18 +95,31 @@ function readSheet() {
   if(email == "") {
     email = "N/A";
   }
+
   if(phoneNumber == "") {
     phoneNumber = "N/A";
   }
+
   if(shippingType == "") {
     shippingType = "N/A";
   }
+
   if(vendorName == "") {
     specialNotes += "Someone forgot to put the vendor 😔\n";
   }
+
+
+  for(i = 0; i < itemsOrdered; i++) {
+    if(quantityArr[i] == 0) {
+      specialNotes += "\nSomoene forgot to put quantity point and laugh 🫵🫵🤣🤣🤣 defaulted to 1"; 
+      quantityArr[i] = 1;
+    }
+  }  
+
   if(shipping == "") { // prevent empty shipping from breaking total price calculation
     shipping = 0;
   }
+
   for(let i = 0; i < itemsOrdered; i++) {
     totalPrice += (parseFloat(priceArr[i]) * parseInt(quantityArr[i]));
   }
