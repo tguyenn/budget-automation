@@ -28,5 +28,5 @@ function editMasterSheet() {
   }
 
   sheet.getRange(originalTargetRow, 12, 1).setValue(shipping); //overwrite 0 for shipping in first newly written row
-
+  // todo: merge this get range with the above sheets api call to reduce api calls and save time^^
 }

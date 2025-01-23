@@ -8,32 +8,32 @@ function parseForm(e) {
   for (const responseAnswer of response) { // for loop that iterates through each question and parses data. Only iterates through questions with responses
     const question = responseAnswer.getItem().getTitle();
     const answer = responseAnswer.getResponse();
-    let parts = [];
+    // let parts = [];
 
-    try {
-        parts = answer.match(/[\s\S]{1,1024}/g) || [];
-    } catch (e) {
-        parts = answer;
-    }
+    // try {
+    //     parts = answer.match(/[\s\S]{1,1024}/g) || [];
+    // } catch (e) {
+    //     parts = answer;
+    // }
 
     if (!answer) {
         continue;
     }
-    for (const [index, part] of Object.entries(parts)) {
-        if (index == 0) {
-            items.push({
-                "name": question,
-                "value": part,
-                "inline": false
-            });
-        } else {
-            items.push({ 
-                "name": question.concat(" (cont.)"),
-                "value": part,
-                "inline": false
-            });
-        }
-    }
+    // for (const [index, part] of Object.entries(parts)) {
+    //     if (index == 0) {
+    //         items.push({
+    //             "name": question,
+    //             "value": part,
+    //             "inline": false
+    //         });
+    //     } else {
+    //         items.push({ 
+    //             "name": question.concat(" (cont.)"),
+    //             "value": part,
+    //             "inline": false
+    //         });
+    //     }
+    // }
 
     if(question.includes("File Upload")) {
       hasSpreadsheet = true;

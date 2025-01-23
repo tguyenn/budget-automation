@@ -6,7 +6,6 @@
 function readSheet() {
 
   const spreadsheet = SpreadsheetApp.openById(inputSheetID); // open arbitrary template sheet 
-
   const sheet = spreadsheet.getSheetByName("Sheet1"); 
 
 
@@ -127,7 +126,7 @@ function readSheet() {
 
   if (totalPrice > 1500) { // "easter egg" or wtv
     footerUrl = "https://i.imgur.com/1kqpus1.jpg"
-    footerText = "holy moly that's a lot of money"
+    footerText = "holy shit we cant afford this"
   }
 
   if (Math.random() > 0.95 && Math.random() > 0.95) { // more easter egg yay yipee
