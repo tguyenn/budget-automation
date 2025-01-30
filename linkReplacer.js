@@ -36,7 +36,6 @@ function replaceLinks() {
         let threadId = draftLinkArr[i].match(/[?&]compose=([a-f0-9]+)/); // grab thread id from draft link
         let slaveName = slaveArr[i].replace(" ", "+");
         if(threadId == null) continue;
-        if(threadId.contains("label")) continue; //scuffed bc idk how to fix lmao
         newLink = `https://mail.google.com/mail/u/0/#label/${slaveName}/${threadId[1]}`;
         sheet.getRange(i + 2, 6).setValue(newLink); // i + 2 is row offset accounting for header and different indexing. 6 is link column
   
