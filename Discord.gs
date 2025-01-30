@@ -17,8 +17,11 @@ let options; // text customizations for embed
 function postEmbed() { // yeah dont ask me to write clean code lmao
   if(itemsOrdered > 17) {
     preparePayload();
-    response = UrlFetchApp.fetch(DISCORD_POST_URL, options); // message 1 of 2
 
+    Logger.log(totalPrice);
+
+    response = UrlFetchApp.fetch(DISCORD_POST_URL, options); // message 1 of 2
+    Utilities.sleep(1000); // ensure second message gets sent as second message
     options = { // overwrite options for next message post
         // "muteHttpExceptions": true,
         "method": "post",
@@ -73,7 +76,7 @@ function preparePayload() {
     embed1 = [
         { "name": "Committee", "value": committeeName, "inline": false },
         { "name": "Special Notes", "value": specialNotes, "inline": false },
-        { "name": "Contact", "value": email + "\n" + phoneNumber, "inline": false },
+        { "name": "Contact", "value": email, "inline": false },
         { "name": "Vendor", "value": vendorName, "inline": false },
         { "name": "Shipping", "value": `$${parseFloat(shipping).toFixed(2)}`, "inline": false},
         { "name": "Shipping Type", "value": shippingType, "inline": false },
@@ -120,7 +123,7 @@ function preparePayload() {
     items = [
         { "name": "Committee", "value": committeeName, "inline": false },
         { "name": "Special Notes", "value": specialNotes, "inline": false },
-        { "name": "Contact", "value": email + "\n" + phoneNumber, "inline": false },
+        { "name": "Contact", "value": email, "inline": false },
         { "name": "Vendor", "value": vendorName, "inline": false },
         { "name": "Shipping", "value": `$${parseFloat(shipping).toFixed(2)}`, "inline": false},
         { "name": "Shipping Type", "value": shippingType, "inline": false },

@@ -79,12 +79,6 @@ function parseForm(e) {
       email = answer;
     }
 
-    if(question.includes("Phone Number")) {
-      phoneNumber = answer;
-      phoneNumber = phoneNumber.toString().replace(/\D/g, ""); // sanitize phoneNumber to be only numbers
-      phoneNumber = phoneNumber.replace(/^(\d{3})(\d{3})(\d{4}).*/, "$1-$2-$3"); // reformat to be xxx-xxx-xxxx
-    }
-
     if(question.includes("Special Notes?")) {
       specialNotes = answer;
     }

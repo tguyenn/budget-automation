@@ -8,7 +8,7 @@ function generateAmazonLink() {
   for(let i = 1; i <= itemsOrdered; i++) {
     let asin = extractASIN(linksArr[i-1]);
     if(asin == null) {
-      specialNotes = specialNotes + " Could not find ASIN for item " + linksArr[i-1] + "\n";
+      specialNotes = specialNotes + " Could not find ASIN for " + nameArr[i-1] + ": " + linksArr[i-1] + "\n";
     }
     amazonLink = amazonLink + "ASIN." + i + "=" + asin + "&Quantity." + i + "=" +  quantityArr[i-1] + "&";
   }

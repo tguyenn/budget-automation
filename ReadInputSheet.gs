@@ -9,7 +9,7 @@ function readSheet() {
   const sheet = spreadsheet.getSheetByName("Sheet1"); 
 
 
-  let lastRow = sheet.getRange("A1:A").getValues();
+  let lastRow = sheet.getRange("A1:A").getValues(); // get last row with content based on column A
   lastRow = lastRow.filter(String).length;
 
   // go from X2:XlastRow and store data into respective variables
@@ -36,30 +36,17 @@ function readSheet() {
     }
   }
 
-  let miscData = sheet.getRange('H3:H9').getValues(); // put data from table on right into an array
+  let miscData = sheet.getRange('H3:H8').getValues(); // put data from table on right into an array
   miscData = miscData.map(row => row[0]); // flatten to 1D array
 
   committeeName = miscData[0];
   vendorName = miscData[1];
   email = miscData[2];
-  phoneNumber = miscData[3];
-  shippingType = miscData[4];
-  shipping = miscData[5];
-  specialNotes = miscData[6] + "\n";
+  shippingType = miscData[3];
+  shipping = miscData[4];
+  specialNotes = miscData[5] + "\n";
 
   itemsOrdered = lastRow - 1;
-
-  // sanitize phone number
-  phoneNumber = phoneNumber.toString().replace(/\D/g, ""); // sanitize phoneNumber to be only numbers
-  if(phoneNumber.length > 10) {
-    specialNotes += "Malformed phone number (too many characters!)\n";
-    phoneNumber = "N/A";
-  }
-  phoneNumber = phoneNumber.replace(/^(\d{3})(\d{3})(\d{4}).*/, "$1-$2-$3"); // reformat to be xxx-xxx-xxxx
-  if(phoneNumber != "" && !phoneNumber.includes("-")) { 
-    specialNotes += "Malformed phone number (too few characters!)\n";
-    phoneNumber = "N/A";
-  }
 
   switch(committeeName) {
     case "VEXU":
@@ -93,10 +80,6 @@ function readSheet() {
 
   if(email == "") {
     email = "N/A";
-  }
-
-  if(phoneNumber == "") {
-    phoneNumber = "N/A";
   }
 
   if(shippingType == "") {

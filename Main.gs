@@ -6,7 +6,6 @@ let discordTag = "";  // for autopinging
 let newSheetUrl = "";
 let inputSheetID = "";
 let email = "N/A"; // for notification to form submitter
-let phoneNumber = "N/A" // for notification to form submitter
 let committeeName = "";
 let vendorName = "";
 let specialNotes = "N/A";
